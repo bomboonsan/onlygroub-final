@@ -35,32 +35,18 @@ import '../styles/archive.scss';
 
 const structuredData : any = `
 {
-    "@context": "https://schema.org/",
-    "@type": "Article",
-    "headline": "${data.title}",
-    "image": {
-        "@type": "ImageObject",
-        "url": "${data.featuredImageFull.node.sourceUrl}",
-        "width": "${data.featuredImageFull.node.mediaDetails.width}",
-        "height": "${data.featuredImageFull.node.mediaDetails.height}"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "ONLYGROUB",
-        "url": "https://onlygroub.com"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "ONLYGROUB",
-        "logo": {
-        "@type": "ImageObject",
-        "url": "https://onlygroub.com/logo.png",
-        "width": "342",
-        "height": "106"
-        }
-    },
-    "datePublished": "${data.date}+07:00",
-    "dateModified": "${data.modified}+07:00"
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [{
+	"@type": "ListItem",
+	"position": 1,
+	"name": "หน้าแรก",
+	"item": "https://onlygroub.com"
+	},{
+	"@type": "ListItem",
+	"position": 2,
+	"name": "${data.page.seo.title}",
+	}]
 }
 `;
 ---
