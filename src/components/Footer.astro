@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import '../styles/footer.scss';
+---
+
+<footer id="colophon" class="site-footer">
+    <!-- Grid -->
+    <div class="footer-container">
+        <div class="footer-logo">
+            <!-- <img  src="./images/logo.png" alt="Logo" /> -->
+            <Image
+                src=/logo.png
+                alt="ONLYGROUB LOGO"
+                width="432"
+                height="106"
+                loading="lazy"
+            />
+        </div>
+        <!-- End Col -->
+    
+        <ul class="footer-links">
+            <li>
+                <a href="/movie">ดูหนัง</a>
+            </li>
+            <li>
+                <a href="/about">เกี่ยวกับเรา</a>
+            </li>
+            <li>
+                <a href="/privacy-policy">นโยบายความเป็นส่วนตัว</a>
+            </li>
+        </ul>
+        <!-- End Col -->
+    
+        <!-- Social Brands -->
+        <div class="footer-copyright">
+            <span>
+                © 2024 All rights reserved. 
+            </span>
+        </div>
+        <!-- End Social Brands -->
+    </div>
+    <!-- End Grid -->
+</footer>

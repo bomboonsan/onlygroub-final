@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+
+import { formatDateToThai } from '../lib/formatDate';
+
+import CardMovie from './CardMovie.astro';
+
+import { GraphQLClient } from 'graphql-request';
+
+// คำสั่งนี้ใช้ในการดึงข้อมูลจาก API ของ WordPress
+const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+
+const query = `
+        query LoadAllPostsExcerpts {
+			posts (first:3 where: {categoryIn : ["3"]}) {
+				nodes {
+					title
+					slug
+					date
+					excerpt
+					featuredImageThumbnail: featuredImage {
+						node {
+						id
+						sourceUrl(size: THUMBNAIL)
+						altText
+						srcSet(size: THUMBNAIL)
+						sizes(size: THUMBNAIL)
+						}
+					}
+					featuredImageFull: featuredImage {
+						node {
+						id
+						sourceUrl(size: _2048X2048)
+						altText
+						srcSet(size: _2048X2048)
+						sizes(size: _2048X2048)
+						}
+					}
+				}
+			}
+		}
+`;
+
+type PostNode = {
+    title: string;
+    slug: string;
+    date: string;
+    excerpt: string;
+    featuredImageThumbnail: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+    featuredImageFull: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+};
+
+type Data = {
+    posts: {
+        nodes: PostNode[];
+    };
+}
+
+const data : Data = await client.request(query, { first: 10 });
+const posts : PostNode[] = data.posts.nodes;
+---
+<section>
+    <div class="section-header">
+        <h2 class="title">ตัวอย่างหนัง</h2>
+        <a href="/category/trailer">ดูทั้งหมด</a>
+    </div>
+    <div class="list-trailers">			
+        {
+            posts.map((post: typeof posts[0]) => {
+                return (
+                <article>
+                    <div class="trailer-thumbnail">
+                        <a href={`/${post.slug}`}>
+                        <Image
+                            srcset={post.featuredImageThumbnail.node.srcSet}
+                            sizes={post.featuredImageThumbnail.node.srcSet}
+                            src={post.featuredImageThumbnail.node.sourceUrl}
+                            alt={post.featuredImageThumbnail.node.altText}
+                            width="320"
+                            height="180"
+                            loading="eager"
+                        />
+                        </a>
+                    </div>
+                    <div class="trailer-content">
+                        <h3 class="title"><a href={`/${post.slug}`}>{post.title}</a></h3>
+                        <time datetime={post.date} class="text-sm"> {formatDateToThai(post.date)} </time>
+                    </div>
+                </article>
+                );
+            })
+        }
+    </div>
+</section>

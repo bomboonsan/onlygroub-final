@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+
+import { formatDateToThai } from '../lib/formatDate';
+
+const { post } = Astro.props;
+---
+<main>
+<article>
+    <header class="py-3 text-center">
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-medium text-white ">{post.title}</h1>
+        <time datetime={post.date}>{formatDateToThai(post.date)}</time>
+    </header>
+    <figure class="content-cover">
+        <Image
+            src={post.featuredImageFull.node.sourceUrl}
+            alt={post.featuredImageFull.node.altText}
+            width="800"
+            height="450"
+            sizes="(max-width: 800px) 100vw, 800px"
+            loading="lazy"
+        />
+    </figure>
+    <div class="entry-content" set:html={post.content.replace('<a href="https://assets.onlygroub', '<a href="https://onlygroub')}></div>
+    <div class="breadcrumb">
+        <ol class="flex justify-center gap-2 line-clamp-1">
+            <li><a href="/">หน้าหลัก</a></li>
+            <li><a href=`/category/${post.terms.nodes[0].slug}` rel="category tag">{post.terms.nodes[0].name}</a></li>
+            <li><span>{post.title}</span></li>
+        </ol>
+    </div>
+</article>
+</main>

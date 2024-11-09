@@ -1,14 +1,13 @@
 ---
-// interface Props {
-// 	title: string;
-// 	body: string;
-// 	href: string;
-// }
 import { Image } from 'astro:assets';
+import fs from 'fs/promises';
+import path from 'path';
+
 const { title , excerpt , date, dateFormatted, imageUrl, imageAlt, url , sizes , srcset  } = Astro.props;
 ---
-<article class="post">
-    <div class="post-thumbnail">
+
+<article class="card">
+    <div class="card-thumbnail">
         <a href={`/${url}`}>
         <Image
             srcset={srcset}
@@ -22,8 +21,8 @@ const { title , excerpt , date, dateFormatted, imageUrl, imageAlt, url , sizes ,
         </a>
     </div>
 
-    <div class="post-content">
-        <h3 class="post-title"><a href={`/${url}`}>{title}</a></h3>
+    <div class="card-content">
+        <h3 class="card-title"><a href={`/${url}`}>{title}</a></h3>
         <time datetime={date} class="entry-date">{dateFormatted}</time>
         <div class="entry-excerpt" set:html={excerpt}></div>
     </div>

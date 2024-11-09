@@ -1,0 +1,17 @@
+.breadcrumb {
+    @apply line-clamp-1 overflow-hidden;
+    ol {
+        @apply flex flex-col md:flex-row justify-center items-center text-sm;
+    }
+    li {
+        @apply text-neutral-200;
+        a {
+            @apply text-white hover:text-primary;
+        }
+        span {
+        }
+    }
+    li + li {
+        @apply before:hidden md:before:inline before:content-['/'] before:text-neutral-200 before:mx-4;
+    }
+}

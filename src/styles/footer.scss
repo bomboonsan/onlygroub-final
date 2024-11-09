@@ -1,0 +1,38 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ==============================================================================================================
+// =================================================== FOOTER ===================================================
+// ==============================================================================================================
+.site-footer {
+    // @apply bg-[#080808] w-full;
+    @apply  px-4 sm:px-4 lg:px-8 mx-auto;
+}
+.footer-container {
+    @apply md:border-t border-neutral-800 py-6 md:py-4 mt-5;
+    @apply grid grid-cols-1 md:grid-cols-3 items-center gap-5;
+    @apply max-w-screen-lg mx-auto;
+}
+.footer-logo {
+    img {
+        filter: invert(1);
+        @apply h-10 w-auto block mx-auto md:ml-0;
+    }
+}
+.footer-copyright {
+    @apply text-center  md:text-end space-x-2;
+    span {
+        @apply text-sm text-neutral-200 uppercase;
+    }
+}
+.footer-links {
+    @apply text-center;
+    li {
+        @apply inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 before:text-neutral-600;
+        a {
+            @apply inline-flex gap-x-2 text-sm focus:outline-none  text-neutral-200 hover:text-neutral-50 focus:text-neutral-200;
+        }
+    }
+}

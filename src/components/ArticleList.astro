@@ -1,0 +1,53 @@
+---
+// ArticleList.astro
+import { GraphQLClient } from 'graphql-request';
+
+// คำสั่งนี้ใช้ในการดึงข้อมูลจาก API ของ WordPress
+const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+
+const query = `
+  query GetLatestPosts($first: Int) {
+    posts(first: $first) {
+      edges {
+        node {
+          id
+          title
+          slug
+          date
+        }
+      }
+    }
+  }
+`;
+
+// ดึงข้อมูลล่าสุด 10 โพสต์
+type PostNode = {
+  id: string;
+  title: string;
+  slug: string;
+  date: string;
+};
+
+type PostEdge = {
+  node: PostNode;
+};
+
+type PostsData = {
+  posts: {
+    edges: PostEdge[];
+  };
+};
+const data: PostsData = await client.request(query, { first: 10 });
+const posts: PostEdge[] = data.posts.edges;
+---
+
+<ul>
+  {posts.map((post) => (
+    <li>
+      <a href={`/${post.node.slug}`}>
+        <h2>{post.node.title}</h2>
+        <p>{new Date(post.node.date).toLocaleDateString()}</p>
+      </a>
+    </li>
+  ))}
+</ul>

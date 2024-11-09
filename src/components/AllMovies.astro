@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+
+import { formatDateToThai } from '../lib/formatDate';
+
+import CardMovie from './CardMovie.astro';
+
+import { GraphQLClient } from 'graphql-request';
+
+// คำสั่งนี้ใช้ในการดึงข้อมูลจาก API ของ WordPress
+const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+
+const query = `
+        query LoadAllPostsExcerpts {
+			posts (first:200 where: {categoryIn : ["281","282"]}) {
+				nodes {
+					title
+					slug
+					date
+					excerpt
+					featuredImageThumbnail: featuredImage {
+						node {
+						id
+						sourceUrl(size: MEDIUM)
+						altText
+						srcSet(size: MEDIUM)
+						sizes(size: MEDIUM)
+						}
+					}
+					featuredImageFull: featuredImage {
+						node {
+						id
+						sourceUrl(size: _2048X2048)
+						altText
+						srcSet(size: _2048X2048)
+						sizes(size: _2048X2048)
+						}
+					}
+				}
+			}
+		}
+`;
+
+type PostNode = {
+    title: string;
+    slug: string;
+    date: string;
+    excerpt: string;
+    featuredImageThumbnail: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+    featuredImageFull: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+};
+
+type Data = {
+    posts: {
+        nodes: PostNode[];
+    };
+}
+
+const data : Data = await client.request(query, { first: 10 });
+const posts : PostNode[] = data.posts.nodes;
+---
+<div class="list-cards">			
+    {
+        posts.map((post: typeof posts[0]) => {
+            return (
+                <CardMovie srcset={post.featuredImageThumbnail.node.srcSet} sizes={post.featuredImageThumbnail.node.srcSet} title={post.title} excerpt={post.excerpt} data={post.date} dateFormatted={formatDateToThai(post.date)} imageUrl={post.featuredImageThumbnail.node.sourceUrl} imageAlt={post.featuredImageThumbnail.node.altText} url={post.slug} />
+            );
+        })
+    }
+</div>

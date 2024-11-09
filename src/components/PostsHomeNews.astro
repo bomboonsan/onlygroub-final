@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+
+import { formatDateToThai } from '../lib/formatDate';
+
+import { GraphQLClient } from 'graphql-request';
+
+// คำสั่งนี้ใช้ในการดึงข้อมูลจาก API ของ WordPress
+const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+
+const query = `
+        query LoadAllPostsExcerpts {
+			posts (first:10 where: {categoryIn : ["280","2"]}) {
+				nodes {
+					title
+					slug
+					date
+					excerpt
+					featuredImageThumbnail: featuredImage {
+						node {
+						id
+						sourceUrl(size: THUMBNAIL)
+						altText
+						srcSet(size: THUMBNAIL)
+						sizes(size: THUMBNAIL)
+						}
+					}
+					featuredImageFull: featuredImage {
+						node {
+						id
+						sourceUrl(size: _2048X2048)
+						altText
+						srcSet(size: _2048X2048)
+						sizes(size: _2048X2048)
+						}
+					}
+				}
+			}
+		}
+`;
+
+type PostNode = {
+    title: string;
+    slug: string;
+    date: string;
+    excerpt: string;
+    featuredImageThumbnail: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+    featuredImageFull: {
+        node: {
+            id: string;
+            sourceUrl: string;
+            altText: string;
+            srcSet: string;
+            sizes: string;
+        };
+    };
+};
+
+type Data = {
+    posts: {
+        nodes: PostNode[];
+    };
+}
+
+const data : Data = await client.request(query, { first: 10 });
+const posts : PostNode[] = data.posts.nodes;
+---
+<section class="mt-12">
+    <div class="section-header">
+        <h2 class="title">ข่าวภาพยนตร์</h2>
+        <a href="/category/news">ดูทั้งหมด</a>
+    </div>
+    <div class="flex flex-wrap gap-5 md:gap-10 mb-5">
+        <div class="w-full md:w-auto md:flex-1">
+            <article class="">
+                <div>
+                    <Image
+                        class="aspect-[16/9] rounded-lg object-cover"
+                        srcset={posts[0].featuredImageFull.node.srcSet}
+                        sizes={posts[0].featuredImageFull.node.srcSet}
+                        src={posts[0].featuredImageFull.node.sourceUrl}
+                        alt={posts[0].featuredImageFull.node.altText}
+                        width="800"
+                        height="450"
+                        loading="eager"
+                    />
+                </div>
+
+                <div class="p-5">
+                    <h2 class="text-white font-semibold text-lg md:text-xl md:leading-tight line-clamp-2 mb-2"><a href={`/${posts[0].slug}`}>{posts[0].title}</a></h2>
+                    <time datetime={posts[0].date} class="text-sm block mb-2"> {formatDateToThai(posts[0].date)} </time>
+                    <div class="text-sm text-neutral-300 line-clamp-2" set:html={posts[0].excerpt}></div>
+                </div>
+            </article>
+
+        </div>
+        <div class="w-full md:w-auto md:flex-1">
+            <div class="home-list-contents-hero">
+                {
+                    posts.slice(1,4).map((post: typeof posts[0]) => {
+                        return (
+                            <article>
+                                <div class="flex gap-5 items-center">
+                                    <div class="w-2/5 basis-2/5 md:order-2">
+                                        <Image
+                                            class="rounded-lg hover:opacity-80 transition-all"
+                                            srcset={post.featuredImageThumbnail.node.srcSet}
+                                            sizes={post.featuredImageThumbnail.node.srcSet}
+                                            src={post.featuredImageThumbnail.node.sourceUrl}
+                                            alt={post.featuredImageThumbnail.node.altText}
+                                            width="320"
+                                            height="180"
+                                            loading="eager"
+                                        />
+                                    </div>
+                                    <div class="flex-1 w-auto space-y-2">
+                                        <h3 class="text-base font-normal text-white leading-snug line-clamp-2 mb-2"><a class="text-white hover:text-primary transition-all" href={`/${post.slug}`}>{post.title}</a></h3>
+                                        <time datetime={post.date} class="text-sm"> {formatDateToThai(post.date)} </time>
+                                    </div>
+                                </div>
+                            </article>
+                        
+                        );})
+                }
+            </div>
+        </div>
+    </div>
+</section>

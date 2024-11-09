@@ -1,19 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PostsHomeNews from '../components/PostsHomeNews.astro';
-import PostsHomeMovie from '../components/PostsHomeMovie.astro';
-import PostsHomeTrailer from '../components/PostsHomeTrailer.astro';
-import '../styles/home.scss';
-import '../styles/archive.scss';
+import Layout from "../layouts/Layout.astro";
+import Page from "../templates/Page.astro";
 
 import { GraphQLClient } from 'graphql-request';
-const page_id = '3118'; // id ของหน้าแรก
+
+const page_id = '66';
+
 const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+
 const query = `
         query GetPageById($id: ID!) {
             page(id: $id, idType: DATABASE_ID) {
                 id
                 title
+                content
                 slug
                 date
                 seo {
@@ -23,7 +23,9 @@ const query = `
             }
         }
 `;
+
 const variables = { id: page_id };
+
 const data : any = await client.request(query, variables);
 
 const structuredData : any = `
@@ -58,11 +60,10 @@ const structuredData : any = `
 `;
 ---
 <Layout title={data.page.seo.title} seo={data.page.seo} structuredData={structuredData}>
-	<main>
-		<PostsHomeNews />
-		<hr class="hr" />
-		<PostsHomeMovie />
-		<hr class="hr" />
-		<PostsHomeTrailer />
-	</main>
+    <Page>
+        <div class="page">
+            <h1 class="page-title">{data.page.title}</h1>
+            <div class="page-content" set:html={data.page.content}></div>
+        </div>
+    </Page>
 </Layout>

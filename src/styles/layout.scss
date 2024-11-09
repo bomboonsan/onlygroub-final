@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body::-webkit-scrollbar {
+    @apply w-2;
+}
+body::-webkit-scrollbar-track {
+    @apply bg-black/10;
+}
+body::-webkit-scrollbar-thumb {
+    @apply bg-white/10;
+    border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+
+body {
+    @apply bg-[#121212] text-neutral-200 antialiased tracking-wide;
+}
+
+.container {
+    @apply mx-auto px-4 lg:px-0;
+    max-width: 1024px !important;
+}
+
+.hr {
+    @apply border-t border-neutral-800 my-10;
+}

@@ -1,0 +1,138 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ==============================================================================================================
+// =================================================== ARCHIVE ===================================================
+// ==============================================================================================================
+.header-section {
+    @apply mb-5;
+}
+.section-title {
+    @apply text-2xl font-bold md:text-3xl text-white;
+}
+.list-posts {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5;
+}
+.list-cards {
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5;
+}
+.list-trailers {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5;
+}
+.list-related {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5;
+}
+
+.trailer-thumbnail {
+    img {
+        @apply rounded-lg hover:opacity-80 transition-all w-full;
+    }
+}
+.trailer-content {
+    @apply p-3;
+    .title {
+        @apply text-base font-medium text-white leading-snug line-clamp-2 mb-1;
+    }
+    a {
+        @apply text-white hover:text-primary transition-all;
+    }
+}
+
+.card {
+    @apply block relative w-full transition-all overflow-hidden;
+
+    .entry-excerpt {
+        @apply absolute top-[-100%] opacity-0 left-0 w-full h-fit bg-neutral-800 bg-opacity-90 text-center p-3 transition-all z-20 overflow-hidden rounded-t-md;
+        @apply text-sm text-neutral-200 font-light;
+        p {
+            @apply line-clamp-3;
+        }
+    }
+
+}
+.card-thumbnail {
+    img {
+        @apply w-full object-cover rounded-md aspect-[7/10];
+    }
+}
+.card-content {
+    @apply p-3 pb-0;
+    .entry-title {
+        @apply text-center block text-sm font-medium mb-1;
+        word-wrap: break-word;
+    }
+    .entry-date {
+        @apply text-sm text-neutral-100 block text-center;
+        font-size: 0.75rem;
+    }    
+}
+.card:hover .entry-excerpt {
+    @apply opacity-100 top-0 transition-all;
+}
+
+.card-title {
+    @apply text-center block text-sm;
+    word-wrap: break-word;
+}
+
+.related-posts {
+    @apply mt-10 pt-5 mb-5 border-t border-neutral-600;
+    .section-title {
+        @apply text-xl font-bold md:text-2xl text-white mb-2 text-center;
+    }
+}
+
+.post {
+    @apply block relative w-full transition-all overflow-hidden;
+
+    .entry-excerpt {
+        @apply absolute top-[-100%] opacity-0 left-0 w-full h-fit bg-neutral-800 bg-opacity-90 text-center p-3 transition-all z-20 overflow-hidden rounded-t-md;
+        @apply text-sm text-neutral-200 font-light;
+        p {
+            @apply line-clamp-3;
+        }
+    }
+
+}
+.post-thumbnail {
+    img {
+        @apply w-full object-cover rounded-md aspect-[4/3];
+    }
+}
+.post-content {
+    @apply p-3 pb-0;
+    .entry-title {
+        @apply text-center block text-sm font-medium mb-1;
+        word-wrap: break-word;
+    }
+    .entry-date {
+        @apply text-sm text-neutral-100 block text-center;
+        font-size: 0.75rem;
+    }    
+}
+.post:hover .entry-excerpt {
+    @apply opacity-100 top-0 transition-all;
+}
+
+.post-title {
+    @apply text-center block text-sm;
+    word-wrap: break-word;
+}
+
+.site-pagination {
+    @apply flex justify-between items-center gap-x-1 my-6;
+}
+
+.btn-pagination {
+    @apply min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none text-white hover:bg-white/10 focus:bg-white/10;
+}
+
+
+.movie-categories {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-10 lg:gap-x-16 mb-10;
+}
+.btn-categories-item {
+    @apply flex justify-center items-center bg-white hover:bg-primary text-black font-semibold py-2 px-3 rounded-full transition-all
+}

@@ -1,0 +1,21 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page {
+    @apply my-10;
+}
+
+.page-title {
+    @apply text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center;
+}
+
+.page-content {
+    @apply font-light max-w-screen-md mx-auto;
+    @apply prose;
+    @apply prose-headings:text-white prose-a:text-primary hover:prose-a:text-white prose-a:font-semibold;
+    @apply prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-sm prose-h6:text-sm;
+    @apply prose-p:text-neutral-200 prose-li:text-neutral-200 prose-headings:text-white prose-em:text-neutral-200 prose-strong:text-neutral-200;
+    @apply text-neutral-200;
+}

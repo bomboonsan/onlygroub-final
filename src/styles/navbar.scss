@@ -1,0 +1,37 @@
+
+// This is a component of tailwindcss
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ==============================================================================================================
+// =================================================== HEADER ===================================================
+// ==============================================================================================================
+.site-logo {
+    filter: invert(1);
+    @apply w-24 md:w-32 h-auto ;
+}
+.site-header {
+    @apply relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-3 bg-neutral-950/40 mb-5;
+    @apply shadow-lg;
+}
+.custom-header {
+    @apply max-w-screen-lg w-full mx-auto px-4 sm:px-0 sm:flex sm:items-center sm:justify-between;
+}
+.header-logo {
+    @apply flex items-center justify-between;
+}
+.header-logo a {
+    @apply flex-none text-xl font-semibold text-white focus:outline-none focus:opacity-80;
+}
+.header-toggle {
+    @apply relative size-7 flex justify-center items-center gap-x-2 rounded-lg border  bg-white shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-transparent border-neutral-700 text-white hover:bg-white/10 focus:bg-white/10;
+}
+.site-navigation {
+    @apply flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5;
+
+    li {
+        @apply font-medium focus:outline-none text-neutral-50 hover:text-primary focus:text-white text-base md:text-lg;
+    }
+}
