@@ -46,9 +46,9 @@
 }
 
 .ads {
-    @apply max-w-screen-sm mx-auto py-8 px-3 my-5 bg-black text-center rounded-lg;
+    @apply max-w-screen-sm py-8 px-0 sm:px-3 my-5 bg-black text-center rounded-lg -mx-4 sm:mx-auto;
     .inner {
-        @apply inline-block;
+        @apply inline-block max-w-[336px];
     }
 }
 
