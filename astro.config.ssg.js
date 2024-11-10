@@ -9,7 +9,11 @@ import sitemap from '@astrojs/sitemap';
 
 import partytown from '@astrojs/partytown';
 
+import vercel from '@astrojs/vercel/serverless';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), sitemap(), partytown()],
+    integrations: [tailwind(), react(), sitemap(), partytown()],
+    output: 'server',
+    adapter: vercel()
 });
