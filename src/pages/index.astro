@@ -33,9 +33,9 @@ const structuredData : any = `
     "headline": "${data.title}",
     "image": {
         "@type": "ImageObject",
-        "url": "${data.featuredImageFull.node.sourceUrl}",
-        "width": "${data.featuredImageFull.node.mediaDetails.width}",
-        "height": "${data.featuredImageFull.node.mediaDetails.height}"
+        "url": "${Astro.url.origin}/cover.webp",
+        "width": "750",
+        "height": "393"
     },
     "author": {
         "@type": "Person",
