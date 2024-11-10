@@ -87,8 +87,14 @@ const structuredData : any = `
     "dateModified": "${post.modified}+07:00"
 }
 `;
+let postTitle : any;
+if (isMovie) {
+    postTitle = `ดูหนัง ${post.title} เต็มเรื่อง`;
+} else {
+    postTitle = post.title;
+}
 ---
-<Layout title={post.title} seo={post.seo} structuredData={structuredData}>
+<Layout title={postTitle} seo={post.seo} structuredData={structuredData}>
     <Content>
         {isMovie && <Movie post={post} />}
         {!isMovie && <News post={post} />}
