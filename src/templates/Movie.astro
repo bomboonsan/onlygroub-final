@@ -8,6 +8,8 @@ import { formatDateToThai } from '../lib/formatDate';
 const { post } = Astro.props;
 
 import '../styles/movie.scss';
+
+import AdsenseMovie from '../components/AdsenseMovie.astro';
 ---
 <main>
 <article>
@@ -42,20 +44,7 @@ import '../styles/movie.scss';
             </div>
         )}
     </div>
-    <div class="ads">
-        <div class="inner">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4356102593773307" crossorigin="anonymous" is:inline></script>
-            <!-- ONLYFROUB336 -->
-            <ins class="adsbygoogle"
-                style="display:inline-block;width:336px;height:280px"
-                data-ad-client="ca-pub-4356102593773307"
-                data-ad-slot="9591821159"></ins>
-            <script>
-                // @ts-ignore
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
+    <AdsenseMovie />
     <div class="entry-content" set:html={post.content.replace('<a href="https://assets.onlygroub', '<a href="https://onlygroub')}></div>
     {
         post.movie.youtubeId && (    
