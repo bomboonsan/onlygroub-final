@@ -54,7 +54,7 @@ let i : number = 1; // สามารถตรวจสอบหน้าสุ
 const maxLoop : number = 50;
 
 // ดึงข้อมูลโพสต์จากหมวดหมู่ที่เลือก โดยใช้ pagination เพื่อดึงข้อมูลทั้งหมด
-while (hasNextPage && i <= maxLoop) {
+while (hasNextPage && i <= page) {
     i++;
     const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
     const posts_Query = `
@@ -168,7 +168,7 @@ const structuredData : any = `
             <span class="px-4 py-2">
                 หน้า {page}
             </span>
-            {page < ( i - 1 ) && ( // page คือหน้าปัจจุบัน & i - 1 คือจำนวนหน้าแยกของหมวดหมู่
+            {hasNextPage && ( // page คือหน้าปัจจุบัน & i - 1 คือจำนวนหน้าแยกของหมวดหมู่
             <a 
                 href={`/category/${slug}/${Number(page) + 1}`}
                 class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition-colors text-black"
