@@ -57,42 +57,75 @@ Astro.response.headers.set("netlify-cdn-cache-control", "s-maxage=31536000");
 
 const isMovie : boolean = ['thai', 'inter'].includes(post.terms.nodes[0]?.slug);
 
-const structuredData : any = `
-{
-    "@context": "https://schema.org/",
-    "@type": "NewsArticle",
-    "headline": "${post.title}",
-    "image": {
-        "@type": "ImageObject",
-        "url": "${post.featuredImageFull.node.sourceUrl}",
-        "width": "${post.featuredImageFull.node.mediaDetails.width}",
-        "height": "${post.featuredImageFull.node.mediaDetails.height}"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "ONLYGROUB",
-        "url": "https://onlygroub.com"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "ONLYGROUB",
-        "logo": {
-        "@type": "ImageObject",
-        "url": "https://onlygroub.com/logo.png",
-        "width": "342",
-        "height": "106"
-        }
-    },
-    "datePublished": "${post.date}+07:00",
-    "dateModified": "${post.modified}+07:00"
-}
-`;
-
 let postTitle : any;
+let structuredData : any;
 if (isMovie) {
+    
     postTitle = `ดูหนัง ${post.title} เต็มเรื่อง`;
+    const randomRatingCount = Math.floor(Math.random() * (8 - 5 + 1) + 5);
+    structuredData  = `
+    {
+            "@context": "https://schema.org",
+            "@type": "Movie",
+            "name": "${post.title}",
+            "director": {
+                "@type": "Person",
+                "name": "${post.movie.director}"
+            },
+            "image": "${post.featuredImageMedium.node.sourceUrl}",
+            "dateCreated": "${post.date}+07:00",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "bestRating": "10",
+                "ratingCount": "${randomRatingCount}",
+                "ratingValue": "1",
+                "reviewCount": "1"
+            },
+            "trailer": {
+                "@type": "VideoObject",
+                "name": "ตัวอย่างหนัง ${post.title}",
+                "description": "ตัวอย่างหนัง ${post.title} HD",
+                "thumbnailUrl": "${post.featuredImageMedium.node.sourceUrl}",
+                "uploadDate": "${post.date}+07:00",
+                "contentUrl": "https://youtu.be/${post.movie.youtubeId}",
+                "embedUrl": "https://www.youtube.com/embed/${post.movie.youtubeId}"
+        }
+    }
+    `;
+
 } else {
     postTitle = post.title;
+
+    structuredData = `
+    {
+        "@context": "https://schema.org/",
+        "@type": "NewsArticle",
+        "headline": "${post.title}",
+        "image": {
+            "@type": "ImageObject",
+            "url": "${post.featuredImageFull.node.sourceUrl}",
+            "width": "${post.featuredImageFull.node.mediaDetails.width}",
+            "height": "${post.featuredImageFull.node.mediaDetails.height}"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "ONLYGROUB",
+            "url": "https://onlygroub.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ONLYGROUB",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https://onlygroub.com/logo.png",
+            "width": "342",
+            "height": "106"
+            }
+        },
+        "datePublished": "${post.date}+07:00",
+        "dateModified": "${post.modified}+07:00"
+    }
+    `;
 }
 ---
 <Layout title={postTitle} seo={post.seo} structuredData={structuredData}>
