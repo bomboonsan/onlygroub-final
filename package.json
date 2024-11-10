@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "build:ssr": "astro build --config astro.config.ssr.js"
+    "astro": "astro"
   },
   "dependencies": {
     "@apollo/client": "^3.11.9",
