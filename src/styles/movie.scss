@@ -51,3 +51,10 @@
         @apply inline-block;
     }
 }
+
+.trailer {
+    @apply max-w-screen-sm mx-auto mb-10;
+    .title {
+        @apply mb-3 text-xl font-medium text-center text-primary;
+    }
+}

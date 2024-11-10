@@ -19,6 +19,16 @@ const query = `
                 seo {
                     title
                     metaDesc
+                    breadcrumbs {
+                        url
+                        text
+                    }
+                    schema {
+                        pageType
+                        articleType
+                        raw
+                    }
+                    readingTime
                 }
             }
         }
@@ -45,6 +55,8 @@ const structuredData : any = `
 	}]
 }
 `;
+
+console.log(data.page.seo.readingTime);
 ---
 <Layout title={data.page.seo.title} seo={data.page.seo} structuredData={structuredData}>
     <Page>

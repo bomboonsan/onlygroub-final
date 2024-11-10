@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
+import { YouTube } from 'astro-embed';
+
 import { formatDateToThai } from '../lib/formatDate';
 
 const { post } = Astro.props;
@@ -27,9 +29,9 @@ import '../styles/movie.scss';
                 class="rounded-lg"
                 src={post.featuredImageMedium.node.sourceUrl}
                 alt={`ดูหนัง ${post.title} เต็มเรื่อง`}
-                width="800"
-                height="450"
-                sizes="(max-width: 800px) 100vw, 800px"
+                width="300"
+                height="429"
+                sizes="(max-width: 300px) 100vw, 300px"
                 loading="lazy"
             />
         </div>
@@ -40,12 +42,30 @@ import '../styles/movie.scss';
             </div>
         )}
     </div>
-    <!-- <div class="ads">
+    <div class="ads">
         <div class="inner">
-            <img src="https://placehold.co/300x250?text=ADS" alt="Hello World" />
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4356102593773307"
+                crossorigin="anonymous"></script>
+            <!-- ONLYFROUB336 -->
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:336px;height:280px"
+                data-ad-client="ca-pub-4356102593773307"
+                data-ad-slot="9591821159"></ins>
+            <script>
+                // @ts-ignore
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
-    </div> -->
+    </div>
     <div class="entry-content" set:html={post.content.replace('<a href="https://assets.onlygroub', '<a href="https://onlygroub')}></div>
+    {
+        post.movie.youtubeId && (    
+            <div class="trailer">
+                <h2 class="title">ตัวอย่าง</h2>
+                <YouTube id={`https://youtu.be/${post.movie.youtubeId}`} title={`ตัวอย่างหนัง ${post.title} HD`} />
+            </div>
+        )
+    }
     <!-- <div class="entry-content" set:html={post.content}></div> -->
     <div class="text-center">
         แก้ไขเมื่อ <time datetime={post.date}>{formatDateToThai(post.date)}</time>
