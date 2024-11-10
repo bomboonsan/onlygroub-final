@@ -48,7 +48,7 @@
 .ads {
     @apply max-w-screen-sm py-8 px-0 sm:px-3 my-5 bg-black text-center rounded-lg -mx-4 sm:mx-auto;
     .inner {
-        @apply inline-block max-w-[336px];
+        @apply inline-block max-w-[336px] overflow-hidden;
     }
 }
 
