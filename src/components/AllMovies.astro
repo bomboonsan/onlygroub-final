@@ -79,7 +79,7 @@ const posts : PostNode[] = data.posts.nodes;
     {
         posts.map((post: typeof posts[0]) => {
             return (
-                <CardMovie srcset={post.featuredImageThumbnail.node.srcSet} sizes={post.featuredImageThumbnail.node.srcSet} title={post.title} excerpt={post.excerpt} data={post.date} dateFormatted={formatDateToThai(post.date)} imageUrl={post.featuredImageThumbnail.node.sourceUrl} imageAlt={post.featuredImageThumbnail.node.altText} url={post.slug} />
+                <CardMovie  srcset={post.featuredImageThumbnail.node.srcSet} sizes={post.featuredImageThumbnail.node.srcSet} title={post.title} excerpt={post.excerpt} data={post.date} dateFormatted={formatDateToThai(post.date)} imageUrl={post.featuredImageThumbnail.node.sourceUrl} imageAlt={post.featuredImageThumbnail.node.altText} url={post.slug} />
             );
         })
     }
