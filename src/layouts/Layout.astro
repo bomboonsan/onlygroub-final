@@ -63,8 +63,8 @@ import '../styles/layout.scss';
 		{structuredData && <script type="application/ld+json" set:html={structuredData}></script>}
 
 		<!-- Google tag (gtag.js) -->
-		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-GBWYWF9KWG"></script>
-		<script type="text/partytown">
+		<script type="text/partytown" is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GBWYWF9KWG"></script>
+		<script type="text/partytown" is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
