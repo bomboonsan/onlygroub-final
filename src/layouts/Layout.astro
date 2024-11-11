@@ -12,6 +12,9 @@ import { ViewTransitions } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
+// Google Analytics
+import GoogleAnalytics from '../components/GoogleAnalytics.astro'
+
 // PWA Service Worker
 import RegisterServiceWorker from '../components/RegisterServiceWorker.astro';
 
@@ -66,14 +69,7 @@ import '../styles/layout.scss';
 		{structuredData && <script type="application/ld+json" set:html={structuredData}></script>}
 
 		<!-- Google tag (gtag.js) -->
-		<script type="text/partytown" is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GBWYWF9KWG"></script>
-		<script type="text/partytown" is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'G-GBWYWF9KWG');
-		</script>
+		<GoogleAnalytics measurementId={'G-GBWYWF9KWG'} />
 
 		<!-- PWA Manifest and Theme Color for Browsers -->
 		<link rel="manifest" href="/manifest.json">
