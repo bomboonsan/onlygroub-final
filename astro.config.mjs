@@ -21,7 +21,12 @@ export default defineConfig({
       }), 
       tailwind(), 
       react(), 
-      partytown({ config: { forward: ['dataLayer.push'] } }),
+      partytown({
+        // Adds dataLayer.push as a forwarding-event.
+        config: {
+          forward: ["dataLayer.push"],
+        },
+      }),
     ],
     output: 'static',
 });

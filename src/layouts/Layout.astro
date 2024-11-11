@@ -7,8 +7,6 @@ interface Props {
 
 import { AstroFont } from "astro-font";
 
-import { ViewTransitions } from 'astro:transitions';
-
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
@@ -68,9 +66,6 @@ import '../styles/layout.scss';
 		)}
 		{structuredData && <script type="application/ld+json" set:html={structuredData}></script>}
 
-		<!-- Google tag (gtag.js) -->
-		<GoogleAnalytics measurementId={'G-GBWYWF9KWG'} />
-
 		<!-- PWA Manifest and Theme Color for Browsers -->
 		<link rel="manifest" href="/manifest.json">
 		<meta name="theme-color" content="#ffa500">
@@ -92,7 +87,6 @@ import '../styles/layout.scss';
 				},
 			]}
 		/>
-		<ViewTransitions />
 	</head>
 	<body>
 		<Navbar />
@@ -101,5 +95,7 @@ import '../styles/layout.scss';
 		</div>
 		<Footer />
 		<RegisterServiceWorker />
+		<!-- Google tag (gtag.js) -->
+		<GoogleAnalytics measurementId={'G-GBWYWF9KWG'} />
 	</body>
 </html>
