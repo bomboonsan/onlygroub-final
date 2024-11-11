@@ -19,7 +19,17 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => response || fetch(event.request))
+            .then(response => response || fetch(event.request).catch(() => {
+                // ถ้าไม่สามารถ-fetch-ได้ (ไม่มีการเชื่อมต่ออินเทอร์เน็ต)
+                // ส่ง-Response-ที่เป็นfallback แทน
+                return new Response('Network error occurred. Please try again later.', {
+                    status: 408,
+                    statusText: 'Request Timeout',
+                    headers: new Headers({
+                        'Content-Type': 'text/html'
+                    })
+                });
+            }))
     );
 });
 
