@@ -96,6 +96,10 @@ export type Post = {
             sourceUrl: string;
             srcSet: string;
         };
+        breadcrumbs: {
+            url : string
+            text : string
+        }
     };
     relatedPost : {
         nodes: {

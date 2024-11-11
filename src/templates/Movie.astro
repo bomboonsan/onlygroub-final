@@ -30,7 +30,7 @@ import AdsenseMovie from '../components/AdsenseMovie.astro';
             <Image
                 class="rounded-lg"
                 src={post.featuredImageMedium.node.sourceUrl}
-                alt={`ดูหนัง ${post.title} เต็มเรื่อง`}
+                alt={`ดูหนัง ${post.title} เต็มเรื่อง กำกับโดย ${post.movie.director}`}
                 width="300"
                 height="429"
                 sizes="(max-width: 300px) 100vw, 300px"
@@ -50,7 +50,7 @@ import AdsenseMovie from '../components/AdsenseMovie.astro';
         post.movie.youtubeId && (    
             <div class="trailer">
                 <h2 class="title">ตัวอย่าง</h2>
-                <YouTube id={`https://youtu.be/${post.movie.youtubeId}`} title={`ตัวอย่างหนัง ${post.title} HD`} />
+                <YouTube id={`https://youtu.be/${post.movie.youtubeId}`} />
             </div>
         )
     }

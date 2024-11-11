@@ -87,6 +87,10 @@ export const ALL_POSTS_QUERY = `
                         sourceUrl
                         srcSet
                     }
+                    breadcrumbs {
+                        url
+                        text
+                    }
                 }
                 relatedPosts(where: { limit: 3 }) {
                     nodes {

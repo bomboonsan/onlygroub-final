@@ -57,6 +57,7 @@ Astro.response.headers.set("netlify-cdn-cache-control", "s-maxage=31536000");
 
 const isMovie : boolean = ['thai', 'inter'].includes(post.terms.nodes[0]?.slug);
 
+
 let postTitle : any;
 let structuredData : any;
 if (isMovie) {
@@ -65,33 +66,32 @@ if (isMovie) {
     const randomRatingCount = Math.floor(Math.random() * (8 - 5 + 1) + 5);
     structuredData  = `
     {
-            "@context": "https://schema.org",
-            "@type": "Movie",
-            "name": "${post.title}",
-            "director": {
-                "@type": "Person",
-                "name": "${post.movie.director}"
-            },
-            "image": "${post.featuredImageMedium.node.sourceUrl}",
-            "dateCreated": "${post.date}+07:00",
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "bestRating": "10",
-                "ratingCount": "${randomRatingCount}",
-                "ratingValue": "1",
-                "reviewCount": "1"
-            },
-            "trailer": {
-                "@type": "VideoObject",
-                "name": "ตัวอย่างหนัง ${post.title}",
-                "description": "ตัวอย่างหนัง ${post.title} HD",
-                "thumbnailUrl": "${post.featuredImageMedium.node.sourceUrl}",
-                "uploadDate": "${post.date}+07:00",
-                "contentUrl": "https://youtu.be/${post.movie.youtubeId}",
-                "embedUrl": "https://www.youtube.com/embed/${post.movie.youtubeId}"
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": "${post.title}",
+        "director": {
+            "@type": "Person",
+            "name": "${post.movie.director}"
+        },
+        "image": "${post.featuredImageMedium.node.sourceUrl}",
+        "dateCreated": "${post.date}+07:00",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "bestRating": "10",
+            "ratingCount": "${randomRatingCount}",
+            "ratingValue": "1",
+            "reviewCount": "1"
+        },
+        "trailer": {
+            "@type": "VideoObject",
+            "name": "ตัวอย่างหนัง ${post.title}",
+            "description": "ตัวอย่างหนัง ${post.title} HD",
+            "thumbnailUrl": "${post.featuredImageMedium.node.sourceUrl}",
+            "uploadDate": "${post.date}+07:00",
+            "contentUrl": "https://youtu.be/${post.movie.youtubeId}",
+            "embedUrl": "https://www.youtube.com/embed/${post.movie.youtubeId}"
         }
-    }
-    `;
+    }`;
 
 } else {
     postTitle = post.title;
@@ -124,8 +124,7 @@ if (isMovie) {
         },
         "datePublished": "${post.date}+07:00",
         "dateModified": "${post.modified}+07:00"
-    }
-    `;
+    }`;
 }
 ---
 <Layout title={postTitle} seo={post.seo} structuredData={structuredData}>
