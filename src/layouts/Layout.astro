@@ -15,9 +15,6 @@ import Footer from '../components/Footer.astro';
 // Google Analytics
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 
-// PWA Service Worker
-import RegisterServiceWorker from '../components/RegisterServiceWorker.astro';
-
 const { title , seo , structuredData } = Astro.props;
 
 const seoTitle : string = title ? title : seo.title;
