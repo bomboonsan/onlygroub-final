@@ -69,7 +69,7 @@ import '../styles/layout.scss';
 		{structuredData && <script type="application/ld+json" set:html={structuredData}></script>}
 
 		<!-- Google tag (gtag.js) -->
-		<!-- <GoogleAnalytics measurementId={'G-GBWYWF9KWG'} /> -->
+		<GoogleAnalytics measurementId={'G-GBWYWF9KWG'} />
 
 		<!-- PWA Manifest and Theme Color for Browsers -->
 		<link rel="manifest" href="/manifest.json">
@@ -100,6 +100,5 @@ import '../styles/layout.scss';
 			<slot />
 		</div>
 		<Footer />
-		<RegisterServiceWorker />
 	</body>
 </html>
