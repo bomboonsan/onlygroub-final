@@ -91,6 +91,12 @@ export const ALL_POSTS_QUERY = `
                         url
                         text
                     }
+                    cornerstone
+                    schema {
+                        pageType
+                        articleType
+                        raw
+                    }
                 }
                 relatedPosts(where: { limit: 3 }) {
                     nodes {

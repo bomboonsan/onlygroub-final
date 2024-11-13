@@ -19,6 +19,16 @@ const query = `
                 seo {
                     title
                     metaDesc
+                    breadcrumbs {
+                        url
+                        text
+                    }
+                    cornerstone
+                    schema {
+                        pageType
+                        articleType
+                        raw
+                    }
                 }
             }
         }
@@ -27,25 +37,8 @@ const query = `
 const variables = { id: page_id };
 
 const data : any = await client.request(query, variables);
-
-const structuredData : any = `
-{
-	"@context": "https://schema.org",
-	"@type": "BreadcrumbList",
-	"itemListElement": [{
-	"@type": "ListItem",
-	"position": 1,
-	"name": "หน้าแรก",
-	"item": "https://onlygroub.com"
-	},{
-	"@type": "ListItem",
-	"position": 2,
-	"name": "${data.page.seo.title}",
-	}]
-}
-`;
 ---
-<Layout title={data.page.seo.title} seo={data.page.seo} structuredData={structuredData}>
+<Layout title={data.page.seo.title} seo={data.page.seo}>
     <Page>
         <div class="my-10">
         <!-- Title -->

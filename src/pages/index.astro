@@ -18,46 +18,25 @@ const query = `
                 date
                 seo {
                     title
-                    metaDesc
+                    metaDesc                    
+                    breadcrumbs {
+                        url
+                        text
+                    }
+                    cornerstone
+                    schema {
+                        pageType
+                        articleType
+                        raw
+                    }
                 }
             }
         }
 `;
 const variables = { id: page_id };
 const data : any = await client.request(query, variables);
-
-const structuredData : any = `
-{
-    "@context": "https://schema.org/",
-    "@type": "Article",
-    "headline": "${data.title}",
-    "image": {
-        "@type": "ImageObject",
-        "url": "${Astro.url.origin}/cover.webp",
-        "width": "750",
-        "height": "393"
-    },
-    "author": {
-        "@type": "Person",
-        "name": "ONLYGROUB",
-        "url": "https://onlygroub.com"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "ONLYGROUB",
-        "logo": {
-        "@type": "ImageObject",
-        "url": "https://onlygroub.com/logo.png",
-        "width": "342",
-        "height": "106"
-        }
-    },
-    "datePublished": "${data.date}+07:00",
-    "dateModified": "${data.modified}+07:00"
-}
-`;
 ---
-<Layout title={data.page.seo.title} seo={data.page.seo} structuredData={structuredData}>
+<Layout title={data.page.seo.title} seo={data.page.seo}>
 	<main>
         <div class="py-10 space-y-4 max-w-screen-md mx-auto">
             <h1 class="text-2xl sm:text-3xl md:text-5xl font-semibold text-white text-center">ONLYGROUB</h1>

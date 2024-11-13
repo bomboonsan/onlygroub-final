@@ -2,7 +2,6 @@
 interface Props {
 	title: string;
 	seo: any;
-	structuredData: any;
 }
 
 import { AstroFont } from "astro-font";
@@ -15,7 +14,7 @@ import Footer from '../components/Footer.astro';
 // Google Analytics
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 
-const { title , seo , structuredData } = Astro.props;
+const { title , seo } = Astro.props;
 
 const seoTitle : string = title ? title : seo.title;
 import '../styles/layout.scss';
@@ -63,9 +62,7 @@ import '../styles/layout.scss';
 		<meta property="twitter:image:width" content="1200" />
 		<meta property="twitter:image:height" content="630" />
 		)}
-		{structuredData && (
-			<script type="application/ld+json" set:html={structuredData}></script>
-		)}
+		<script type="application/ld+json" set:html={seo.schema.raw}></script>
 
 		<!-- Google tag (gtag.js) -->
 		<GoogleAnalytics measurementId={'G-GBWYWF9KWG'} />

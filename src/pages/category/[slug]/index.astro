@@ -57,6 +57,14 @@ const post_query = `
 								sourceUrl
 								srcSet
 							}
+							breadcrumbs {
+								url
+								text
+							}
+							cornerstone
+							schema {
+								raw
+							}
 						}
 						posts(first: 24) {
 							nodes {
@@ -118,7 +126,7 @@ const structuredData : any = `
 }
 `;
 ---
-<Layout title={seo.title} seo={seo} structuredData={structuredData}>
+<Layout title={seo.title} seo={seo}>
 	<div class="container">
 		<div class="header-section">
 			<h1 class="section-title">{data.categories.nodes[0].name}</h1>

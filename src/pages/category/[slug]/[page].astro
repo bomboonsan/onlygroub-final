@@ -66,6 +66,14 @@ while (hasNextPage && i <= page) {
                         seo {
                             title
                             metaDesc
+                            breadcrumbs {
+								url
+								text
+							}
+							cornerstone
+							schema {
+								raw
+							}
                         }
                         posts(first: ${postPerPage} , after: "${endCursor}") {
                             pageInfo {
@@ -125,7 +133,7 @@ const structuredData : any = `
 }
 `;
 ---
-<Layout title={categoryTitle} seo={seo} structuredData={structuredData}>
+<Layout title={categoryTitle} seo={seo}>
 	<div class="container">
 		<div class="header-section">
             <h1 class="section-title">{categoryTitle}</h1>

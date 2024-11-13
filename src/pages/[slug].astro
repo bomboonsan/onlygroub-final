@@ -46,7 +46,7 @@ export async function getStaticPaths() {
         };
     });
 }
-const { post, prev, next }: { post: Post, prev?: Post, next?: Post } = Astro.props;
+let { post, prev, next }: { post: Post, prev?: Post, next?: Post } = Astro.props;
 const relatedPosts = (post as any)?.relatedPosts.nodes;
 
 // The browser should always check freshness
@@ -93,41 +93,24 @@ if (isMovie) {
         }
     }`;
 
-} else {
-    postTitle = post.title;
 
-    structuredData = `
-    {
-        "@context": "https://schema.org/",
-        "@type": "NewsArticle",
-        "headline": "${post.title}",
-        "image": {
-            "@type": "ImageObject",
-            "url": "${post.featuredImageFull.node.sourceUrl}",
-            "width": "${post.featuredImageFull.node.mediaDetails.width}",
-            "height": "${post.featuredImageFull.node.mediaDetails.height}"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "ONLYGROUB",
-            "url": "https://onlygroub.com"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "ONLYGROUB",
-            "logo": {
-            "@type": "ImageObject",
-            "url": "https://onlygroub.com/logo.png",
-            "width": "342",
-            "height": "106"
-            }
-        },
-        "datePublished": "${post.date}+07:00",
-        "dateModified": "${post.modified}+07:00"
-    }`;
+    let raw : any = JSON.parse(post.seo.schema.raw);
+    // raw['@graph'][0]['@type'] = 'Article'; // เปลี่ยนประเภทเป็น Article
+    raw['@graph'].splice(0, 1); // ลบประเภท Article เพื่อใส่ ประเภท Movie
+    const structuredData_json : any = JSON.parse(structuredData);
+    raw['@graph'].push(structuredData_json);
+
+    post.seo.schema.raw = JSON.stringify(raw);
+
+    // console.log(post.seo.schema.raw);
+
+} else {
+    postTitle = post.title;    
 }
+
+
 ---
-<Layout title={postTitle} seo={post.seo} structuredData={structuredData}>
+<Layout title={postTitle} seo={post.seo}>
     <Content>
         {isMovie && <Movie post={post} />}
         {!isMovie && <News post={post} />}

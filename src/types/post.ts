@@ -100,6 +100,12 @@ export type Post = {
             url : string
             text : string
         }
+        cornerstone : string
+        schema: {
+            pageType : string
+            articleType : string
+            raw : string
+        }
     };
     relatedPost : {
         nodes: {

@@ -19,6 +19,16 @@ const query = `
                 seo {
                     title
                     metaDesc
+                    breadcrumbs {
+                        url
+                        text
+                    }
+                    cornerstone
+                    schema {
+                        pageType
+                        articleType
+                        raw
+                    }
                 }
             }
         }
@@ -45,7 +55,7 @@ const structuredData : any = `
 }
 `;
 ---
-<Layout title={data.page.seo.title} seo={data.page.seo} structuredData={structuredData}>
+<Layout title={data.page.seo.title} seo={data.page.seo}>
     <Page>
         <div class="page">
             <h1 class="page-title">{data.page.title}</h1>
