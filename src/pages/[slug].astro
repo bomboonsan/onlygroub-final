@@ -49,12 +49,6 @@ export async function getStaticPaths() {
 let { post, prev, next }: { post: Post, prev?: Post, next?: Post } = Astro.props;
 const relatedPosts = (post as any)?.relatedPosts.nodes;
 
-// The browser should always check freshness
-Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
-
-// The CDN should cache for a year, but revalidate if the cache tag changes
-Astro.response.headers.set("netlify-cdn-cache-control", "s-maxage=31536000");
-
 const isMovie : boolean = ['thai', 'inter'].includes(post.terms.nodes[0]?.slug);
 
 
