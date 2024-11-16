@@ -85,7 +85,7 @@
 }
 
 .post {
-    @apply block relative w-full transition-all overflow-hidden;
+    @apply block relative w-full overflow-hidden text-white hover:text-primary transition-all;
 
     .entry-excerpt {
         @apply absolute top-[-100%] opacity-0 left-0 w-full h-fit bg-neutral-800 bg-opacity-90 text-center p-3 transition-all z-20 overflow-hidden rounded-t-md;
@@ -108,7 +108,7 @@
         word-wrap: break-word;
     }
     .entry-date {
-        @apply text-sm text-neutral-100 block text-center;
+        @apply text-sm text-neutral-300 font-light block text-center;
         font-size: 0.75rem;
     }    
 }
