@@ -56,11 +56,4 @@ import AdsenseMovie from '../components/AdsenseMovie.astro';
     <div class="text-center mb-4">
         แก้ไขเมื่อ <time datetime={post.date}>{formatDateToThai(post.date)}</time>
     </div>
-    <div class="breadcrumb">
-        <ol class="flex justify-center gap-2 line-clamp-1">
-            <li><a href="/">หน้าหลัก</a></li>
-            <li><a href=`/category/${post.terms.nodes[0].slug}` rel="category tag">{post.terms.nodes[0].name}</a></li>
-            <li><span>{post.title}</span></li>
-        </ol>
-    </div>
 </main>

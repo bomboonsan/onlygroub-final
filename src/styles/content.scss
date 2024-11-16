@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+header.content-header {
+    @apply py-5 text-center mb-4 space-y-5 text-sm text-neutral-300;
+}
+.content-category {
+    @apply inline-block text-primary bg-neutral-800 hover:text-neutral-950 hover:bg-white text-sm font-medium py-0.5 px-4 rounded-xl leading-loose transition-all;
+}
+.content-title {
+    @apply text-xl sm:text-2xl md:text-3xl font-medium text-white;
+}
+
 .content-cover {
     @apply max-w-screen-lg mx-auto;
     img {

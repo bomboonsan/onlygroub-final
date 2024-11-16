@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://onlygroub.com/sitemap-index.xml

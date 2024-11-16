@@ -6,53 +6,23 @@ import { formatDateToThai } from '../lib/formatDate';
 const { next , prev } = Astro.props;
 ---
 <div class="post-navigation">
-    <div class="flex-1">
+    <div class="post-prev">
+        <span class="title">ก่อนหน้า</span>
         {
             prev && (
                 <a href={`/${prev.slug}`}>
-                    <div class="trailer-thumbnail">
-                        <Image
-                            srcset={prev.featuredImageThumbnail.node.srcSet}
-                            sizes={prev.featuredImageThumbnail.node.srcSet}
-                            src={prev.featuredImageThumbnail.node.sourceUrl}
-                            alt={prev.featuredImageThumbnail.node.altText}
-                            width="320"
-                            height="180"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div class="trailer-content">
-                        <p class="title">{prev.title}</p>
-                    </div>
+                    <span class="name">{prev.title}</span>
                 </a>
-                <div class="flex flex-wrap">
-                    <div class="w-full"></div>
-                </div>
             )
         }
     </div>
-    <div class="flex-1">
+    <div class="post-next">
+        <span class="title">ถัดไป</span>
         {
             next && (
                 <a href={`/${next.slug}`}>
-                    <div class="trailer-thumbnail">
-                        <Image
-                            srcset={next.featuredImageThumbnail.node.srcSet}
-                            sizes={next.featuredImageThumbnail.node.srcSet}
-                            src={next.featuredImageThumbnail.node.sourceUrl}
-                            alt={next.featuredImageThumbnail.node.altText}
-                            width="320"
-                            height="180"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div class="trailer-content">
-                        <p class="title">{next.title}</p>
-                    </div>
+                    <span class="name">{next.title}</span>
                 </a>
-                <div class="flex flex-wrap">
-                    <div class="w-full"></div>
-                </div>
             )
         }
     </div>

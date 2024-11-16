@@ -56,7 +56,7 @@ let postTitle : any;
 let structuredData : any;
 if (isMovie) {
     
-    postTitle = `ดูหนัง ${post.title} เต็มเรื่อง`;
+    postTitle = `${post.title} : ดูหนัง เต็มเรื่อง เรื่องย่อ ตัวอย่าง`;
     const randomRatingCount = Math.floor(Math.random() * (8 - 5 + 1) + 5);
     structuredData  = `
     {
