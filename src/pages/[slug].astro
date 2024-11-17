@@ -96,6 +96,8 @@ if (isMovie) {
 
     post.seo.schema.raw = JSON.stringify(raw);
 
+    post.seo.metaDesc = `ดูหนัง ${post.title} กำกับโดย ${post.movie.director} จะเข้าฉายวันที่ ${formatDateToThai(post.movie.releaseDate)} เตรียมดูหนังเต็มเรื่อง`;
+
     // console.log(post.seo.schema.raw);
 
 } else {
