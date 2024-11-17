@@ -12,30 +12,33 @@ import '../styles/movie.scss';
 import AdsenseMovie from '../components/AdsenseMovie.astro';
 ---
 <main>
+    <article>
     <div class="movie-detail-container">
-        <div class="movie-detail">
+        <header class="movie-detail">
             <div class="movie-link-wrap"><a class="movie-link" href="/movie">ดูหนัง</a></div>
             <h1 class="movie-name">{post.title}</h1>
             <dl class="movie-info">
-                <dt>ผู้กำกับ</dt>
+                <dt aria-label="ผู้กำกับภาพยนตร์">ผู้กำกับ</dt>
                 <dd>{post.movie.director}</dd>
-                <dt>นักแสดงนำ</dt>
+                <dt aria-label="นักแสดงนำ">นักแสดงนำ</dt>
                 <dd>{post.movie.actors}</dd>
-                <dt>วันที่ฉาย</dt>
+                <dt aria-label="วันที่ฉาย">วันที่ฉาย</dt>
                 <dd>{formatDateToThai(post.movie.releaseDate)}</dd>                
             </dl>
-        </div>
-        <div class="movie-poster">
+        </header>
+        <figure class="movie-poster">
+            <a href={post.featuredImageFull.node.sourceUrl} target="_blank">
             <Image
                 class="rounded-lg"
                 src={post.featuredImageMedium.node.sourceUrl}
-                alt={`ดูหนัง ${post.title} เต็มเรื่อง กำกับโดย ${post.movie.director}`}
+                alt={`โปสเตอร์หนัง ${post.title} กำกับโดย ${post.movie.director}`}
                 width="300"
                 height="429"
                 sizes="(max-width: 300px) 100vw, 300px"
                 loading="eager"
             />
-        </div>
+            </a>
+        </figure>
         {post.movie.synopsis && (
             <div class="movie-synopsis">
                 <h2 class="title">เรื่องย่อ</h2>
@@ -48,12 +51,13 @@ import AdsenseMovie from '../components/AdsenseMovie.astro';
     {
         post.movie.youtubeId && (    
             <div class="trailer">
-                <h2 class="title">ตัวอย่าง</h2>
+                <h2 class="title">ดูตัวอย่างหนัง {post.title}</h2>
                 <YouTube id={`https://youtu.be/${post.movie.youtubeId}`} />
             </div>
         )
     }
-    <div class="text-center mb-4">
+    <footer class="text-center mb-4">
         แก้ไขเมื่อ <time datetime={post.date}>{formatDateToThai(post.date)}</time>
-    </div>
+    </footer>
+    </article>
 </main>
