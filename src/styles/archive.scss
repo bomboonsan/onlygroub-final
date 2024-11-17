@@ -82,6 +82,10 @@
     .section-title {
         @apply text-xl font-bold md:text-2xl text-white mb-2 text-center;
     }
+
+    img {
+        @apply hidden md:block;
+    }
 }
 
 .post {

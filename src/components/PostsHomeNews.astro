@@ -73,7 +73,7 @@ type Data = {
 const data : Data = await client.request(query, { first: 10 });
 const posts : PostNode[] = data.posts.nodes;
 ---
-<section class="mt-12">
+<section class="mt-5 md:mt-12">
     <div class="section-header">
         <h2 class="title">ข่าวภาพยนตร์</h2>
         <a href="/category/news">ดูทั้งหมด</a>

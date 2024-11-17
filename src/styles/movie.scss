@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 .movie-detail-container {
-    @apply flex flex-wrap justify-center items-center gap-5 md:gap-5 md:gap-y-5 max-w-3xl mx-auto p-4 bg-neutral-800/50 rounded-lg shadow-md shadow-neutral-950/80;
+    
+    @apply flex flex-wrap justify-center items-center gap-5 md:gap-5 md:gap-y-5 max-w-3xl -mx-3 md:mx-auto p-3 md:p-4 pt-6 md:pt-4 bg-neutral-800/50 rounded-lg shadow-md shadow-neutral-950/80;
     @apply max-w-screen-sm;
 }
 .movie-poster {
@@ -46,7 +47,7 @@
 }
 
 .ads {
-    @apply max-w-screen-sm py-8 px-0 sm:px-3 my-5 bg-black text-center rounded-lg -mx-4 sm:mx-auto;
+    @apply max-w-screen-sm py-8 px-0 sm:px-3 my-5 bg-black text-center md:rounded-lg -mx-4 sm:mx-auto;
     .inner {
         @apply inline-block max-w-[336px] overflow-hidden;
     }
