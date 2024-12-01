@@ -6,24 +6,24 @@ import path from 'path';
 const { title , excerpt , date, dateFormatted, imageUrl, imageAlt, url , sizes , srcset  } = Astro.props;
 ---
 
-<article class="card">
-    <div class="card-thumbnail">
-        <a href={`/${url}`}>
-        <Image
-            srcset={srcset}
-            sizes={sizes}
-            src={imageUrl}
-            alt={imageAlt}
-            width="300"
-            height="429"
-            loading="lazy"
-        />
-        </a>
-    </div>
+<div class="card">
+    <a href={`https://movie.onlygroub.com/movie/${url}`}>
+        <div class="card-thumbnail">
+            
+            <Image
+                srcset={srcset}
+                sizes={sizes}
+                src={imageUrl}
+                alt={imageAlt}
+                width="300"
+                height="429"
+                loading="lazy"
+            />
+            
+        </div>
 
-    <div class="card-content">
-        <h3 class="card-title"><a href={`/${url}`}>{title}</a></h3>
-        <time datetime={date} class="entry-date">{dateFormatted}</time>
-        <div class="entry-excerpt" set:html={excerpt}></div>
-    </div>
-</article>
+        <div class="card-content">
+            <h3 class="card-title">{title}</h3>
+        </div>
+    </a>
+</div>

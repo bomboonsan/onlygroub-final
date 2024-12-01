@@ -74,6 +74,8 @@ type Data = {
 
 const data : Data = await client.request(query, { first: 10 });
 const posts : PostNode[] = data.posts.nodes;
+
+// console.log('posts', posts);
 ---
 <div class="list-cards">			
     {

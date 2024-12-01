@@ -8,11 +8,11 @@ import CardMovie from './CardMovie.astro';
 import { GraphQLClient } from 'graphql-request';
 
 // คำสั่งนี้ใช้ในการดึงข้อมูลจาก API ของ WordPress
-const client = new GraphQLClient('https://assets.onlygroub.com/graphql');
+const client = new GraphQLClient('https://api.onlygroub.com/graphql');
 
 const query = `
         query LoadAllPostsExcerpts {
-			posts (first:10 where: {categoryIn : ["281","282"]}) {
+			posts (first:10) {
 				nodes {
 					title
 					slug
@@ -78,7 +78,7 @@ const posts : PostNode[] = data.posts.nodes;
 <section>
     <div class="section-header">
         <h2 class="title">ดูหนังใหม่</h2>
-        <a href="/movie">ดูทั้งหมด</a>
+        <a href="https://movie.onlygroub.com/">ดูทั้งหมด</a>
     </div>
     <div class="list-cards">			
         {
